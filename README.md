@@ -80,7 +80,7 @@ padding-top: 20px;
 <form method="POST">
 {% csrf_token %}
 <div class="formelt">
-Length : <input type="text" name="length" value="{{a}}"></input>(in m)<br/>
+Length : <input type="text" name="length" value="{{b}}"></input>(in m)<br/>
 </div>
 <div class="formelt">
 Height : <input type="text" name="height" value="{{h}}"></input>(in m)<br/>
@@ -103,18 +103,18 @@ from django.shortcuts import render
 def rectarea(request):
     context={}
     context['area'] = "0"
-    context['a'] = "0"
+    context['b'] = "0"
     context['h'] = "0"
     if request.method == 'POST':
         print("POST method is used")
-        a = request.POST.get('length','0')
+        b = request.POST.get('length','0')
         h = request.POST.get('height','0')
         print('request=',request)
-        print('Length=',a)
+        print('Length=',b)
         print('Height=',h)
-        area =2*(int(a)*int(a))+4*int(a)* int(h)
+        area =2*(int(b)*int(b))+4*int(b)* int(h)
         context['area'] = area
-        context['a'] = a
+        context['b'] = b
         context['h'] = h
         print('Area=',area)
     return render(request,'mathapp/math.html',context)
